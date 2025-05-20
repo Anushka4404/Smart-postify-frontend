@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 export default function AIAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
@@ -24,7 +25,6 @@ export default function AIAssistant() {
     setMessage('');
     setIsLoading(true);
 
-    
     try {
       const response = await fetch(`${API_BASE_URL}/api/ai/chat`, {
         method: 'POST',
@@ -61,7 +61,7 @@ export default function AIAssistant() {
           </svg>
         </button>
       ) : (
-        <div className="bg-white rounded-2xl shadow-2xl w-96 max-h-[600px] flex flex-col transform transition-all duration-300 scale-100 sm:max-w-lg">
+        <div className="bg-white rounded-2xl shadow-2xl w-[90vw] sm:w-96 max-h-[90vh] flex flex-col transform transition-all duration-300 scale-100 sm:max-w-lg">
           <div className="p-4 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white rounded-t-2xl flex justify-between items-center">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
@@ -81,7 +81,7 @@ export default function AIAssistant() {
             </button>
           </div>
           
-          <div ref={chatContainerRef} className="flex-1 p-4 overflow-y-auto max-h-[400px] space-y-4 scroll-smooth">
+          <div ref={chatContainerRef} className="flex-1 p-4 overflow-y-auto max-h-[50vh] sm:max-h-[400px] space-y-4 scroll-smooth">
             {chat.length === 0 && (
               <div className="text-center text-gray-500 py-8">
                 <div className="w-16 h-16 mx-auto mb-4 bg-indigo-100 rounded-full flex items-center justify-center">
@@ -135,7 +135,7 @@ export default function AIAssistant() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-3 rounded-xl hover:from-indigo-700 hover:to-indigo-800 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[80px]"
+                className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-3 rounded-xl hover:from-indigo-700 hover:to-indigo-800 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[50px]"
               >
                 {isLoading ? (
                   <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -151,4 +151,4 @@ export default function AIAssistant() {
       )}
     </div>
   );
-} 
+}
