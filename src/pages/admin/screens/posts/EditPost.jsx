@@ -17,6 +17,8 @@ import {
   filterCategories,
 } from "../../../../utils/multiSelectTagUtils";
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL; 
+
 const promiseOptions = async (inputValue) => {
   const { data: categoriesData } = await getAllCategories();
   return filterCategories(inputValue, categoriesData);
@@ -38,7 +40,7 @@ const EditPost = () => {
   const [aiLoading, setAiLoading] = useState(false);
 
   const generateBlogBody = async ({ title, section }) => {
-    const response = await fetch("http://localhost:5000/api/ai/generate", {
+    const response = await fetch(`${API_BASE_URL}/api/ai/generate`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
